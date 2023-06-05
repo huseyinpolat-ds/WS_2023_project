@@ -11,7 +11,8 @@ script1 = """
                 print('waiting')
                 assert(splash:go(args.url))
             end
-            return {html = splash:html()}
+            return {html = splash:html(),
+                    url = splash:url()}
         end
             """
 
@@ -51,7 +52,7 @@ class LinksSpider(scrapy.Spider):
     try:
         with open("book_links.csv", "rt") as f:
             if bool_param:
-                start_urls = [url.strip() for url in f.readlines()][1:101]
+                start_urls = [url.strip() for url in f.readlines()][1:11]
             else:
                 start_urls = [url.strip() for url in f.readlines()][1:]
     except:
@@ -73,7 +74,7 @@ class LinksSpider(scrapy.Spider):
         review_count_element = ("//div[@class='BookPageMetadataSection__ratingStats']//span[@data-testid='reviewsCount']/text()")
         pages_element = ("//p[@data-testid='pagesFormat']/text()")
         
-        p['link'] = response.request.url
+        p['link'] = response.url
         p['title'] = response.xpath(title_element).get()    
         p['author_name'] = response.xpath(author_name_element).get()
         p['author_link'] = response.xpath(author_link_element).get()
