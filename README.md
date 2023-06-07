@@ -1,4 +1,4 @@
-# 3 Scrapers for ([Goodreads lists](https://www.goodreads.com/list/show/22031.Nonfiction_With_a_Side_of_Self_Help?page=1))
+# 3 Scrapers for [Goodreads lists](https://www.goodreads.com/list/show/22031.Nonfiction_With_a_Side_of_Self_Help?page=1)
 
 This repository contains web scraping scripts that collect book information from Goodreads. The project is implemented in Python using various libraries and frameworks such as Scrapy and Selenium.
 
