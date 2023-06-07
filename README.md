@@ -36,8 +36,8 @@ This repository contains web scraping scripts that collect book information from
 The project consists of multiple web scraping scripts, each serving a specific purpose. Follow the instructions below to run each scraper:
 
 1. Pagination Links Scraper:
-   - Open the `pagination_links` directory.
-   - Modify the `start_urls` variable in the `links_spider.py` file to specify the Goodreads list URL you want to scrape.
+   - Open the `spiders` directory.
+   - Modify the `start_urls` variable in the `s1.py` file to specify the Goodreads list URL you want to scrape.
    - Run the scraper using the following command:
 
      ```shell
@@ -47,8 +47,6 @@ The project consists of multiple web scraping scripts, each serving a specific p
    - The pagination links will be scraped and saved in the `pagination_links.csv` file.
 
 2. Book Links Scraper:
-   - Open the `book_links` directory.
-   - Place the `pagination_links.csv` file obtained from the previous step in the same directory.
    - Run the scraper using the following command:
 
      ```shell
@@ -58,8 +56,6 @@ The project consists of multiple web scraping scripts, each serving a specific p
    - The book links will be scraped and saved in the `book_links.csv` file.
 
 3. Book Details Scraper:
-   - Open the `book_details` directory.
-   - Place the `book_links.csv` file obtained from the previous step in the same directory.
    - Run the scraper using the following command:
 
      ```shell
@@ -68,5 +64,5 @@ The project consists of multiple web scraping scripts, each serving a specific p
 
    - The book details will be scraped and saved in the `book_details.csv` file.
 
-Note: Make sure to have the appropriate CSV files in the respective directories for each scraper to work correctly.
+Note: Make sure to have the exact same CSV file naming as in instructions in 2nd and 3rd spider to work correctly.
 
