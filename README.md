@@ -17,7 +17,6 @@ This repository contains web scraping scripts that collect book information from
 Before running the script, you may need to modify some configuration variables according to your requirements. These variables are typically located at the beginning of the script file and are marked with comments for easy identification. Here are some common variables you might need to configure:
 
 - `WEB_DRIVER_PATH`: Set this variable to the path of the web driver executable on your machine.
-- `BROWSER`: Specify the browser you want to automate (e.g., "chrome" or "firefox").
 -  Modify the first `url` variable to specify the Goodreads list URL you want to scrape.
 
 ### Running the Script
