@@ -31,9 +31,9 @@ This repository contains web scraping scripts that collect book information from
    - Extract the downloaded driver and place it in a directory that is included in your system's PATH environment variable.
    
 
-## Usage
+## Scrapy Usage
 
-The project consists of multiple web scraping scripts, each serving a specific purpose. Follow the instructions below to run each scraper:
+The project consists of multiple web scrapy spiders, each serving a specific purpose. Follow the instructions below to run each scraper:
 
 1. Pagination Links Scraper:
    - Open the `spiders` directory.
