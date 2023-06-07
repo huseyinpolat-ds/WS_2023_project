@@ -1,4 +1,4 @@
-# 3 Scrapers for ([Goodreads](https://huspolat-uw-dsba.shinyapps.io/Library-test/))
+# 3 Scrapers for ([Goodreads lists](https://www.goodreads.com/list/show/22031.Nonfiction_With_a_Side_of_Self_Help?page=1))
 
 This repository contains web scraping scripts that collect book information from Goodreads. The project is implemented in Python using various libraries and frameworks such as Scrapy and Selenium.
 
@@ -25,10 +25,10 @@ This repository contains web scraping scripts that collect book information from
    This will install the necessary libraries such as Scrapy, Selenium, pandas, and other dependencies.
    
 4. Install the appropriate WebDriver for Selenium:
-
-   The project uses Selenium with Firefox browser in headless mode.
-   Download the appropriate WebDriver for your operating system from the following link: GeckoDriver
-   Extract the downloaded driver and place it in a directory that is included in your system's PATH environment variable.
+   
+   - The project uses Selenium with Firefox browser in headless mode.
+   - Download the appropriate WebDriver for your operating system from the following link: [GeckoDriver](https://github.com/mozilla/geckodriver/releases)
+   - Extract the downloaded driver and place it in a directory that is included in your system's PATH environment variable.
    
 
 ## Usage
