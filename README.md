@@ -23,6 +23,13 @@ This repository contains web scraping scripts that collect book information from
    ```
 
    This will install the necessary libraries such as Scrapy, Selenium, pandas, and other dependencies.
+   
+4. Install the appropriate WebDriver for Selenium:
+
+   The project uses Selenium with Firefox browser in headless mode.
+   Download the appropriate WebDriver for your operating system from the following link: GeckoDriver
+   Extract the downloaded driver and place it in a directory that is included in your system's PATH environment variable.
+   
 
 ## Usage
 
@@ -63,9 +70,3 @@ The project consists of multiple web scraping scripts, each serving a specific p
 
 Note: Make sure to have the appropriate CSV files in the respective directories for each scraper to work correctly.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-```
-
-Feel free to adjust the instructions based on your specific requirements or add any additional information you find necessary.
