@@ -27,9 +27,27 @@ This repository contains web scraping scripts that collect book information from
 4. Install the appropriate WebDriver for Selenium:
    
    - The project uses Selenium with Firefox browser in headless mode.
-   - Download the appropriate WebDriver for your operating system from the following link: [GeckoDriver](https://github.com/mozilla/geckodriver/releases)
+   - Download the appropriate WebDriver for your operating system from the following link: [GeckoDriver for Firefox](https://github.com/mozilla/geckodriver/releases)
    - Extract the downloaded driver and place it in a directory that is included in your system's PATH environment variable.
-   
+
+## Selenium Usage
+
+Before running the script, you may need to modify some configuration variables according to your requirements. These variables are typically located at the beginning of the script file and are marked with comments for easy identification. Here are some common variables you might need to configure:
+
+- `WEB_DRIVER_PATH`: Set this variable to the path of the web driver executable on your machine.
+- `BROWSER`: Specify the browser you want to automate (e.g., "chrome" or "firefox").
+-  Modify the first `url` variable to specify the Goodreads list URL you want to scrape.
+
+### Running the Script
+1. Open a terminal or command prompt.
+2. Navigate to the directory where the script is located.
+3. Execute the following command to run the script:
+   ```
+   python selenium_scraper.py
+   ```
+   Replace `script_name.py` with the actual name of the script file.
+
+Once the script starts running, it will automate the specified browser and perform the desired actions based on the provided instructions.
 
 ## Scrapy Usage
 
