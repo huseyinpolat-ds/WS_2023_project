@@ -4,27 +4,9 @@ This repository contains web scraping scripts that collect book information from
 
 ## Installation
 
-1. Clone the repository to your local machine:
-
-   ```shell
-   git clone https://github.com/huseyinpolat-ds/WS_2023_project.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```shell
-   cd WS_2023_project
-   ```
-
-3. Install the required dependencies using pip:
-
-   ```shell
-   pip install -r requirements.txt
-   ```
-
-   This will install the necessary libraries such as Scrapy, Selenium, pandas, and other dependencies.
+1. Install the necessary libraries such as Scrapy, Selenium, pandas, and other dependencies.
    
-4. Install the appropriate WebDriver for Selenium:
+2. Install the appropriate WebDriver for Selenium:
    
    - The project uses Selenium with Firefox browser in headless mode.
    - Download the appropriate WebDriver for your operating system from the following link: [GeckoDriver for Firefox](https://github.com/mozilla/geckodriver/releases)
