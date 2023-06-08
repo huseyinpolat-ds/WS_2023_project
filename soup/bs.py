@@ -5,9 +5,10 @@ import pandas as pd
 import re
 from concurrent.futures import ThreadPoolExecutor
 
-# Parameter to limit the number of pages
+# Using Bool Parameter to limit the number of pages
 bool_param = True
 
+##get start time for calculation scraping time 
 start_time = time.time()
 
 # Create an instance of requests.Session for efficient network requests
@@ -17,6 +18,9 @@ session = requests.Session()
 url = 'https://www.goodreads.com/list/show/22031.Nonfiction_With_a_Side_of_Self_Help?page=1'
 response = session.get(url)
 soup = BeautifulSoup(response.content, 'html.parser')
+
+
+# Extract pagination links for first 10 page
 
 pagination_links = soup.select('div.pagination a')
 pagination_df = pd.DataFrame(columns=['page', 'link'])
@@ -28,9 +32,12 @@ for link in pagination_links:
     if len(page) <= 2:
         pagination_df = pd.concat([pagination_df, pd.DataFrame({'page': [page], 'link': [link_url]})], ignore_index=True)
 
+#save the pagination links to a CSV file also for later use 
 pagination_df.to_csv('C:\\Users\\Gizem\\Desktop\\UW\\2nd\\WEB_SCRAPING\\PROJECT\\BS\\pagination_links.csv', index=False)
 
 # Collect book links
+
+#First read pagination links file to get book links
 pagination_df = pd.read_csv('C:\\Users\\Gizem\\Desktop\\UW\\2nd\\WEB_SCRAPING\\PROJECT\\BS\\pagination_links.csv')
 book_links = pd.DataFrame(columns=['link'])
 
@@ -46,20 +53,27 @@ def extract_book_links(page):
         book_links.append(book_link)
     return book_links
 
+# Use ThreadPoolExecutor to extract book links in parallel which helps reduce scraping time
+
 with ThreadPoolExecutor() as executor:
     results = executor.map(extract_book_links, pagination_df['link'])
     for result in results:
         book_links = pd.concat([book_links, pd.DataFrame({'link': result})], ignore_index=True)
 
+# Save book links to a CSV file also for furher usage
 book_links.to_csv('C:\\Users\\Gizem\\Desktop\\UW\\2nd\\WEB_SCRAPING\\PROJECT\\BS\\book_links.csv', index=False)
 
 # Collect book details
+
+###first read book_links.csv file to get book details
 book_links = pd.read_csv('C:\\Users\\Gizem\\Desktop\\UW\\2nd\\WEB_SCRAPING\\PROJECT\\BS\\book_links.csv')
 if bool_param:
     book_links = book_links[1:101]
 
 books = pd.DataFrame(columns=["link", "title", "author_name", "author_link", "kindle_price",
                               "average_rating", "rating_count", "review_count", "n_pages"])
+
+###create loop for GET request to handle potential request failures and retries the request until a successful response is obtained
 
 def parse_book_details(url):
     response = None
@@ -70,9 +84,14 @@ def parse_book_details(url):
             print(f"Request failed for {url}. Retrying...")
             time.sleep(1)
 
+## 1 second delay is added before parsing  to ensure proper server  
     soup = BeautifulSoup(response.content, 'html.parser')
     time.sleep(1)
     
+    ##extract book details from the page 
+    ###The try-except blocks are added to handle potential errors or exceptions that 
+    # may occur during the extraction of specific book details from the parsed HTML content.
+
     try:
         title_element = soup.find('h1', attrs={'data-testid': 'bookTitle'})
         title = title_element.text.strip() if title_element else ''
@@ -139,6 +158,8 @@ def scrape_book_details(link):
 
     return details
 
+# Use ThreadPoolExecutor to scrape book details in parallel
+
 with ThreadPoolExecutor() as executor:
     results = executor.map(scrape_book_details, book_links['link'])
     for result in results:
@@ -150,8 +171,10 @@ pattern = r'[^0-9,]'
 books['rating_count'] = books['rating_count'].apply(lambda x: re.sub(pattern, '', x))
 books['review_count'] = books['review_count'].apply(lambda x: re.sub(pattern, '', x))
 
+# Save book details to a CSV file
 books.to_csv('C:\\Users\\Gizem\\Desktop\\UW\\2nd\\WEB_SCRAPING\\PROJECT\\BS\\book_details.csv', index=False)
 
+#get the end time and calculate scraping time in Seconds
 end_time = time.time()
 total_time = end_time - start_time
 print("Scraping time:", total_time, "seconds")
