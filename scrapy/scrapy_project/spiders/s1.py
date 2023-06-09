@@ -40,3 +40,8 @@ class LinkListsSpider(scrapy.Spider):
               pass
             
             yield p # Yield p as scraped element
+			
+    def close(self, reason):
+        start_time = self.crawler.stats.get_value('start_time')
+        finish_time = self.crawler.stats.get_value('finish_time')
+        print("Total run time: ", finish_time-start_time)
