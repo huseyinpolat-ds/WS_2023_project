@@ -13,6 +13,9 @@ import getpass
 import pandas as pd
 import re
 
+##get start time for calculation scraping time 
+start_time = time.time()
+
 gecko_path = '/opt/homebrew/bin/geckodriver'  # directory for gecko driver
 ser = Service(gecko_path)
 options = webdriver.firefox.options.Options() # get firefox options
@@ -63,7 +66,7 @@ book_links = pd.DataFrame(columns=['link'])
 for page in pagination_df['link']:
                                    
     driver.get(page) # visit given pagination page
-    time.sleep(3) # wait for page to load
+    time.sleep(0.5) # wait for page to load
 
 
     try: # Sometimes a flyer pops up and blocks the whole webpage
@@ -114,7 +117,7 @@ books = pd.DataFrame(columns=["link", "title", "author_name", "author_link", "ki
 for link in book_links['link']:
             
     driver.get(link) # visit given book link
-    time.sleep(1)
+    time.sleep(0.5)
     cnt += 1  # record number of pages visited
     
     try: # Sometimes a flyer pops up and blocks the whole webpage
@@ -214,3 +217,8 @@ books['rating_count'] = books['rating_count'].apply(lambda x: re.sub(pattern, ''
 books['review_count'] = books['review_count'].apply(lambda x: re.sub(pattern, '', x)) # Remove ' reviews' text and leave only digits and comma
 
 books.to_csv('book_details.csv', index=False) # save scraped book details to csv file
+
+#get the end time and calculate scraping time in Seconds
+end_time = time.time()
+total_time = end_time - start_time
+print("Scraping time:", total_time, "seconds")
