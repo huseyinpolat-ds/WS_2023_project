@@ -5,7 +5,7 @@
 # Collect book details
 
 # -*- coding: utf-8 -*-
-bool_param = False # When set to True, only first 100 pages will be scraped
+bool_param = True # When set to True, only first 100 pages will be scraped
 import scrapy
 from scrapy import Request
 
@@ -73,3 +73,8 @@ class LinksSpider(scrapy.Spider):
             p['n_pages'] = response.xpath(pages_element).get()
 
             yield p # Yield p as scraped element
+			
+    def close(self, reason):
+        start_time = self.crawler.stats.get_value('start_time')
+        finish_time = self.crawler.stats.get_value('finish_time')
+        print("Total run time: ", finish_time-start_time)
