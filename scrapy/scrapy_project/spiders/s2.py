@@ -27,3 +27,8 @@ class LinksSpider(scrapy.Spider):
             l = BookLink() # Define p as an instance of BookLink class that is defined at the top of this script
             l['book_link'] ='https://www.goodreads.com' + s.xpath('@href').get() # Retrieve href attribute from scraped element and concatanete with domain url
             yield l # Yield l as scraped element
+			
+    def close(self, reason):
+        start_time = self.crawler.stats.get_value('start_time')
+        finish_time = self.crawler.stats.get_value('finish_time')
+        print("Total run time: ", finish_time-start_time)
