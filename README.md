@@ -20,10 +20,11 @@ This repository contains web scraping scripts that collect book information from
 1. Open a terminal or command prompt.
 2. Navigate to the directory where the script is located.
 3. Execute the following command to run the script:
+
    ```
    python bs.py
    ```
-   The script will connect to the specified website, scrape the desired data, and display the extracted information in the console.
+   Once the script starts running, it will automate the specified browser and scrape instructed fields from Goodreads list.
 
 ## Selenium Usage
 
@@ -36,10 +37,11 @@ Before running the script, you may need to modify some configuration variables a
 1. Open a terminal or command prompt.
 2. Navigate to the directory where the script is located.
 3. Execute the following command to run the script:
+
    ```
    python selenium_scraper.py
    ```
-Once the script starts running, it will automate the specified browser and perform the desired actions based on the provided instructions.
+Once the script starts running, it will automate the specified browser and scrape instructed fields from Goodreads list.
 
 ## Scrapy Usage
 
